@@ -1,7 +1,7 @@
 from django.contrib import admin
 from django.core.exceptions import ValidationError
 from django.forms import BaseInlineFormSet
-from .models import Article, ArticleTags
+from .models import Article, ArticleTags, Tags
 
 
 class ArticleTagsInlineFormset(BaseInlineFormSet):
@@ -21,7 +21,6 @@ class ArticleTagsInline(admin.TabularInline):
     model = ArticleTags
     formset = ArticleTagsInlineFormset
 
-
-@admin.register(Article)
+@admin.register(Article, Tags)
 class ArticleAdmin(admin.ModelAdmin):
     inlines = [ArticleTagsInline]
